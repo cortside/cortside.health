@@ -1,6 +1,42 @@
 # Cortside.Health
 Framework for exposing health check  endpoint with configurable checks and ability to publish available via telemetry recorder.
 
+## Example appsettings.json configuration:
+```json
+"HealthCheckHostedService": {
+    "Name": "{{Service:Name}}",
+    "Enabled": true,
+    "Interval": 5,
+    "CacheDuration": 30,
+    "Checks": [
+        {
+            "Name": "webapistarter-db",
+            "Type": "dbcontext",
+            "Required": true,
+            "Interval": 30,
+            "Timeout": 5
+        },
+        {
+            "Name": "policyserver",
+            "Type": "url",
+            "Required": false,
+            "Value": "{{PolicyServer:PolicyServerUrl}}/health",
+            "Interval": 30,
+            "Timeout": 5
+        },
+        {
+            "Name": "identityserver",
+            "Type": "url",
+            "Required": false,
+            "Value": "{{IdentityServer:Authority}}/api/health",
+            "Interval": 30,
+            "Timeout": 5
+        }
+    ]
+}
+```
+Note: you can use the {{variable}} syntax in the name and value properties of the check to reference a configuration variable else where in configurations.  This way you are not duplicating values, example for services that have another section so that you don't have mismatch in check and running value.
+
 ## Example Startup.cs configuration:
 ```csharp
 // use PartManager to register controller
