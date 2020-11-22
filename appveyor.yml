@@ -57,8 +57,8 @@ artifacts:
 cache:
 - '%USERPROFILE%\.nuget\packages'
   
-nuget:
-- disable_publish_on_pr: true
+#nuget:
+#- disable_publish_on_pr: true
 #  account_feed: true
 #  project_feed: true
   
