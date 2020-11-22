@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
-namespace Cortside.Common.Health.Checks {
+namespace Cortside.Health.Checks {
     public class DbContextCheck : Check {
         private readonly IServiceProvider serviceProvider;
 

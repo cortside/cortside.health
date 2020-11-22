@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Cortside.Common.Health.Checks {
+namespace Cortside.Health.Checks {
     public abstract class Check {
 
         protected CheckConfiguration check;

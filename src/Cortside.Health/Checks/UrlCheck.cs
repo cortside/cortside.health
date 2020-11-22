@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using RestSharp;
 
-namespace Cortside.Common.Health.Checks {
+namespace Cortside.Health.Checks {
     public class UrlCheck : Check {
 
         public UrlCheck(IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder) : base(cache, logger, recorder) { }

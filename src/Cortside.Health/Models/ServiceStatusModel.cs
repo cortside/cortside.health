@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cortside.Common.Health.Models {
+namespace Cortside.Health.Models {
     /// <summary>
     /// Service status
     /// </summary>

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Cortside.Common.Health {
+namespace Cortside.Health {
     public interface IAvailabilityRecorder {
         void RecordAvailability(string service, TimeSpan duration, bool healthy, string message);
     }

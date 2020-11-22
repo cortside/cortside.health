@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
-namespace Cortside.Common.Health.Checks {
+namespace Cortside.Health.Checks {
     public class HealthCheck : Check {
         private readonly BuildModel build;
         private readonly List<Check> checks;

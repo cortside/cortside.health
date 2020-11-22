@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Cortside.Common.Health.Checks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Checks;
+using Cortside.Health.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace Cortside.Common.Health {
+namespace Cortside.Health {
     public class CheckFactory : ICheckFactory {
 
         private readonly IMemoryCache cache;

@@ -1,4 +1,4 @@
-﻿namespace Cortside.Common.Health.Models {
+﻿namespace Cortside.Health.Models {
     public class Availability {
         public int Count { get; set; }
         public int Success { get; set; }

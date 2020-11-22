@@ -3,7 +3,7 @@ using Microsoft.ApplicationInsights;
 using Microsoft.ApplicationInsights.DataContracts;
 using Microsoft.Extensions.Logging;
 
-namespace Cortside.Common.Health.Recorders {
+namespace Cortside.Health.Recorders {
     public class ApplicationInsightsRecorder : IAvailabilityRecorder {
 
         private readonly ILogger<ApplicationInsightsRecorder> logger;

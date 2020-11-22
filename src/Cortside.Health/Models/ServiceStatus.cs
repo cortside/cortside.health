@@ -1,4 +1,4 @@
-﻿namespace Cortside.Common.Health.Models {
+﻿namespace Cortside.Health.Models {
     /// <summary>
     /// Service status enum
     /// </summary>

@@ -1,9 +1,9 @@
 ﻿using System;
-using Cortside.Common.Health.Checks;
-using Cortside.Common.Health.Models;
+using Cortside.Health.Checks;
+using Cortside.Health.Models;
 using Microsoft.Extensions.Logging;
 
-namespace Cortside.Common.Health {
+namespace Cortside.Health {
     public interface ICheckFactory {
 
         public ILogger<Check> Logger { get; }
