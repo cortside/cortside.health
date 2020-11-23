@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Cortside.Common.Hosting;
 using Cortside.Health.Checks;
 using Cortside.Health.Models;
-using Cortside.Common.Hosting;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
@@ -17,7 +17,7 @@ namespace Cortside.Health {
 
         private readonly List<Check> checks;
 
-        public HealthCheckHostedService(ILogger<HealthCheckHostedService> logger, HealthCheckServiceConfiguration config, IMemoryCache cache, IConfiguration configuration, ICheckFactory factory, BuildModel build) : base(logger, config.Enabled, config.Interval) {
+        public HealthCheckHostedService(ILogger<HealthCheckHostedService> logger, HealthCheckServiceConfiguration config, IMemoryCache cache, IConfiguration configuration, ICheckFactory factory, BuildModel build) : base(logger, config.Enabled, config.Interval, true) {
             config.Name = factory.ExpandTemplate(config.Name);
             checks = new List<Check>();
             foreach (var check in config.Checks) {
