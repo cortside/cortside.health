@@ -23,10 +23,13 @@ namespace Cortside.Health.Checks {
 
             using (var scope = serviceProvider.CreateScope()) {
                 try {
-                    var dbScope = scope.ServiceProvider.GetRequiredService<DbContext>();
-                    dbScope.Database.SetCommandTimeout(check.Timeout);
+                    var context = scope.ServiceProvider.GetRequiredService<DbContext>();
 
-                    await dbScope.Database.ExecuteSqlCommandAsync("select @@VERSION");
+                    // only do actual test to conext if the db is not the in memory provider
+                    if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory") {
+                        context.Database.SetCommandTimeout(check.Timeout);
+                        await context.Database.ExecuteSqlCommandAsync("select @@VERSION");
+                    }
 
                     serviceStatusModel.Healthy = true;
                     serviceStatusModel.Status = ServiceStatus.Ok;
