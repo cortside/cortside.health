@@ -31,9 +31,9 @@ namespace Cortside.Health.Checks {
                 response.Checks.Add(check.Name, check.Status);
             }
 
-            response.Healthy = !response.Checks.Select(x => x.Value).Any(c => c != null && c.Required && !c.Healthy);
+            response.Healthy = !response.Checks.Select(x => x.Value).Any(c => c.Required && !c.Healthy);
             response.Status = response.Healthy ? ServiceStatus.Ok : ServiceStatus.Failure;
-            var degraded = response.Checks.Select(x => x.Value).Any(c => c != null && !c.Required && !c.Healthy);
+            var degraded = response.Checks.Select(x => x.Value).Any(c => !c.Required && !c.Healthy);
 
             if (response.Healthy && degraded) {
                 response.Status = ServiceStatus.Degraded;

@@ -39,7 +39,23 @@ namespace Cortside.Health.Checks {
         }
 
         public string Name => check.Name;
-        public ServiceStatusModel Status => cache.Get<ServiceStatusModel>(Name);
+        public ServiceStatusModel Status {
+            get {
+                var status = cache.Get<ServiceStatusModel>(Name);
+                if (status == null) {
+                    return new ServiceStatusModel() {
+                        Healthy = false,
+                        Timestamp = DateTime.UtcNow,
+                        Status = ServiceStatus.Failure,
+                        StatusDetail = "status not cached",
+                        Required = check.Required
+                    };
+                }
+
+                return status;
+            }
+        }
+
 
         protected void UpdateAvailability(bool healthy, long elapsedMilliseconds) {
             availability.Count += 1;
@@ -67,7 +83,8 @@ namespace Cortside.Health.Checks {
                         Healthy = false,
                         Timestamp = DateTime.UtcNow,
                         Status = ServiceStatus.Failure,
-                        StatusDetail = ex.Message
+                        StatusDetail = ex.Message,
+                        Required = check.Required
                     };
                 }
 
