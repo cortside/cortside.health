@@ -56,23 +56,6 @@ namespace Cortside.Health.Checks {
             }
         }
 
-
-        protected void UpdateAvailability(bool healthy, long elapsedMilliseconds) {
-            availability.Count += 1;
-
-            if (healthy) {
-                availability.Success++;
-                availability.LastSuccess = DateTime.UtcNow;
-            } else {
-                availability.Failure++;
-                availability.LastFailure = DateTime.UtcNow;
-            }
-
-            availability.Uptime = availability.Success * 100.0 / availability.Count;
-            availability.TotalDuration += elapsedMilliseconds;
-            availability.AverageDuration = availability.TotalDuration / Convert.ToDouble(availability.Count);
-        }
-
         public async Task InternalExecuteAsync() {
             logger.LogInformation($"Checking status of {Name}");
 
@@ -96,7 +79,7 @@ namespace Cortside.Health.Checks {
                 }
 
                 stopwatch.Stop();
-                UpdateAvailability(serviceStatusModel.Healthy, stopwatch.ElapsedMilliseconds);
+                availability.UpdateStatistics(serviceStatusModel.Healthy, stopwatch.ElapsedMilliseconds);
                 serviceStatusModel.Availability = availability;
                 recorder.RecordAvailability(Name, stopwatch.Elapsed, serviceStatusModel.Healthy, JsonConvert.SerializeObject(serviceStatusModel));
 

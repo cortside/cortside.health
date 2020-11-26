@@ -8,19 +8,20 @@ namespace Cortside.Health.Checks {
 
     public class UnresolvedCheck : Check {
 
-        private string statusDetail;
+        private readonly string statusDetail;
 
         public UnresolvedCheck(IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder, string statusDetail) : base(cache, logger, recorder) {
             this.statusDetail = $"Unable to resolve type for check with error: {statusDetail}";
         }
 
         public override async Task<ServiceStatusModel> ExecuteAsync() {
-            return new ServiceStatusModel() {
+            var model = new ServiceStatusModel() {
                 Healthy = false,
                 Status = ServiceStatus.Failure,
                 StatusDetail = statusDetail,
                 Timestamp = DateTime.UtcNow
             };
+            return await Task.FromResult<ServiceStatusModel>(model);
         }
     }
 }
