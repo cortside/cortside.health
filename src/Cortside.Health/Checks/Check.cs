@@ -59,8 +59,15 @@ namespace Cortside.Health.Checks {
 
         protected void UpdateAvailability(bool healthy, long elapsedMilliseconds) {
             availability.Count += 1;
-            availability.Success += healthy ? 1 : 0;
-            availability.Failure += healthy ? 0 : 1;
+
+            if (healthy) {
+                availability.Success++;
+                availability.LastSuccess = DateTime.UtcNow;
+            } else {
+                availability.Failure++;
+                availability.LastFailure = DateTime.UtcNow;
+            }
+
             availability.Uptime = availability.Success * 100.0 / availability.Count;
             availability.TotalDuration += elapsedMilliseconds;
             availability.AverageDuration = availability.TotalDuration / Convert.ToDouble(availability.Count);
