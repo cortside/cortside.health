@@ -39,7 +39,7 @@ Note: you can use the {{variable}} syntax in the name and value properties of th
 
 ## Example Startup.cs configuration:
 ```csharp
-// use PartManager to register controller
+// use PartManager to register controller -- add to existing AddControllers call
 services.AddControllers()
     .PartManager.ApplicationParts.Add(new AssemblyPart(typeof(HealthController).Assembly));
 

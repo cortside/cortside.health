@@ -38,6 +38,9 @@ namespace Cortside.Health {
             if (checks.ContainsKey(check.Type)) {
                 var type = checks[check.Type];
                 var instance = serviceProvider.GetService(type) as Check;
+                if (instance == null) {
+                    instance = new FailedCheck(cache, logger, recorder, type);
+                }
                 instance.Initialize(check);
                 return instance;
             } else {

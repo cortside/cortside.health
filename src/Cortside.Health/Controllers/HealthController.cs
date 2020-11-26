@@ -10,7 +10,7 @@ namespace Cortside.Health.Controllers {
     /// Health
     /// </summary>
     [ApiVersionNeutral]
-    [Route("api/health")]
+    [Route("api/health")]  // TODO: need to make this configurable
     [ApiController]
     [Produces("application/json")]
     public class HealthController : ControllerBase {
