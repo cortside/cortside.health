@@ -37,14 +37,23 @@ namespace Cortside.Health {
 
             if (checks.ContainsKey(check.Type)) {
                 var type = checks[check.Type];
-                var instance = serviceProvider.GetService(type) as Check;
-                if (instance == null) {
-                    instance = new FailedCheck(cache, logger, recorder, type);
+                Check instance = null;
+                try {
+                    instance = serviceProvider.GetService(type) as Check;
+                } catch (Exception ex) {
+                    instance = new UnresolvedCheck(cache, logger, recorder, $"Could not resolve type {type.Name} with message: {ex.Message}");
                 }
+
+                if (instance == null) {
+                    instance = new UnresolvedCheck(cache, logger, recorder, $"Could not resolve type {type.Name}");
+                }
+
                 instance.Initialize(check);
                 return instance;
             } else {
-                throw new ArgumentException("Invalid Type", check.Type);
+                var instance = new UnresolvedCheck(cache, logger, recorder, $"Could not find check in registered checks for type {check.Type}");
+                instance.Initialize(check);
+                return instance;
             }
         }
 

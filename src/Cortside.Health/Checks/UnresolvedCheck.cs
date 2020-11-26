@@ -6,12 +6,12 @@ using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health.Checks {
 
-    public class FailedCheck : Check {
+    public class UnresolvedCheck : Check {
 
         private string statusDetail;
 
-        public FailedCheck(IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder, Type type) : base(cache, logger, recorder) {
-            statusDetail = $"Unable to resolve type {type.Name} for check {check.Name}";
+        public UnresolvedCheck(IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder, string statusDetail) : base(cache, logger, recorder) {
+            this.statusDetail = $"Unable to resolve type for check with error: {statusDetail}";
         }
 
         public override async Task<ServiceStatusModel> ExecuteAsync() {
