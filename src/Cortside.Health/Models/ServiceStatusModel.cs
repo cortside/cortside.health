@@ -1,4 +1,5 @@
 ﻿using System;
+using Cortside.Health.Enums;
 
 namespace Cortside.Health.Models {
     /// <summary>

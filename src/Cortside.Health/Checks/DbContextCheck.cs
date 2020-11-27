@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Cortside.Health.Enums;
 using Cortside.Health.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Caching.Memory;
