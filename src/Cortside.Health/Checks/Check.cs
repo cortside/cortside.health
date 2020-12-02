@@ -22,7 +22,7 @@ namespace Cortside.Health.Checks {
             this.recorder = recorder;
         }
 
-        internal void Initialize(CheckConfiguration check) {
+        public void Initialize(CheckConfiguration check) {
             this.check = check;
 
             // fix up and make sure that interval and cache duration are set
