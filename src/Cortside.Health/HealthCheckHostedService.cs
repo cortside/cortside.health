@@ -30,8 +30,8 @@ namespace Cortside.Health {
         }
 
         protected override async Task ExecuteIntervalAsync() {
-            var tasks = checks.Select(t => t.InternalExecuteAsync()).ToList();
-            await Task.WhenAll(tasks);
+            var tasks = checks.Select(t => t.InternalExecuteAsync());
+            await Task.WhenAll(tasks).ConfigureAwait(false);
         }
     }
 }
