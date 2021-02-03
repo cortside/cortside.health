@@ -24,7 +24,8 @@ namespace Cortside.Health {
             this.configuration = configuration;
             checks = new Dictionary<string, Type>() {
                 ["url"] = typeof(UrlCheck),
-                ["dbcontext"] = typeof(DbContextCheck)
+                ["dbcontext"] = typeof(DbContextCheck),
+                ["custom"] = typeof(CustomCheck)
             };
         }
 
