@@ -67,6 +67,8 @@ services.AddSingleton(Configuration.GetSection("Build").Get<BuildModel>());
 // checks
 services.AddTransient<UrlCheck>();
 services.AddTransient<DbContextCheck>();
+// this one is not explicitly required, unless you want to use custom checks
+services.AddTransient<CustomCheck>();
 
 // check factory and hosted service
 services.AddTransient<ICheckFactory, CheckFactory>();
@@ -74,6 +76,9 @@ services.AddHostedService<HealthCheckHostedService>();
 
 // for DbContextCheck
 services.AddTransient<DbContext, DatabaseContext>();
+
+// for CustomCheck, we need to inject an explict implementation of IHealthValidator, to make sure that it is resolved as expected
+services.AddTransient<IHealthValidator, <CustomClass>>();
 ```
 
 ## Running example
