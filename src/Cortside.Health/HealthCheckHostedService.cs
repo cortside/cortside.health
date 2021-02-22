@@ -36,11 +36,10 @@ namespace Cortside.Health {
 
         protected override async Task ExecuteIntervalAsync() {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();
 
+            stopwatch.Start();
             var tasks = checks.Select(t => t.InternalExecuteAsync());
             await Task.WhenAll(tasks).ConfigureAwait(false);
-
             stopwatch.Stop();
 
             var duration = (int)TimeSpan.FromSeconds(config.CacheDuration).TotalMilliseconds;
