@@ -22,8 +22,8 @@ namespace Cortside.Health.Checks {
             this.recorder = recorder;
         }
 
-        public void Initialize(CheckConfiguration check) {
-            this.check = check;
+        public void Initialize(CheckConfiguration cc) {
+            this.check = cc;
 
             // fix up and make sure that interval and cache duration are set
             if (check.Interval == 0 && check.CacheDuration == 0) {
@@ -36,7 +36,7 @@ namespace Cortside.Health.Checks {
                 check.CacheDuration = check.Interval * 2;
             }
 
-            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval} and cache duration of {check.CacheDuration}");
+            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval}s and cache duration of {check.CacheDuration}s");
         }
 
         public string Name => check.Name;
