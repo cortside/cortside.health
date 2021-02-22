@@ -41,9 +41,9 @@ namespace Cortside.Health.Checks {
             }
 
             if (response.Status == ServiceStatus.Failure) {
-                logger.LogError($"Health check response for {Name} is failure: {JsonConvert.SerializeObject(response)}");
+                logger.LogError($"Health check response for {Name} is failure: {JsonConvert.SerializeObject(response.Checks.Where(c => !c.Value.Healthy).ToDictionary(c => c.Key, c => c.Value))}");
             } else if (response.Status == ServiceStatus.Degraded) {
-                logger.LogWarning($"Health check response for {Name} is degraded: {JsonConvert.SerializeObject(response)}");
+                logger.LogWarning($"Health check response for {Name} is degraded: {JsonConvert.SerializeObject(response.Checks.Where(c => !c.Value.Healthy).ToDictionary(c => c.Key, c => c.Value))}");
             }
 
             return response;
