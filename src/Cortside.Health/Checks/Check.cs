@@ -35,8 +35,11 @@ namespace Cortside.Health.Checks {
             if (check.CacheDuration < check.Interval) {
                 check.CacheDuration = check.Interval * 2;
             }
+            if (check.Timeout == 0) {
+                check.Timeout = check.Interval;
+            }
 
-            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval}s and cache duration of {check.CacheDuration}s");
+            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval}s, timeout of {check.Timeout}s and cache duration of {check.CacheDuration}s");
         }
 
         public string Name => check.Name;
