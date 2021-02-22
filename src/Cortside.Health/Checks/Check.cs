@@ -58,11 +58,11 @@ namespace Cortside.Health.Checks {
         }
 
         public async Task InternalExecuteAsync() {
-            logger.LogInformation($"Checking status of {Name}");
-
             var item = cache.Get<ServiceStatusModel>(Name);
             var age = item != null ? (DateTime.UtcNow - item.Timestamp).TotalSeconds : int.MaxValue;
             if (age >= check.Interval) {
+                logger.LogInformation($"Checking status of {Name}");
+
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
@@ -80,6 +80,16 @@ namespace Cortside.Health.Checks {
                 }
 
                 stopwatch.Stop();
+
+                if (!serviceStatusModel.Healthy) {
+                    logger.LogError($"Check response for {Name} is failure with ServiceStatus of {serviceStatusModel.StatusDetail}: {JsonConvert.SerializeObject(serviceStatusModel)}");
+                }
+
+                var timeout = (int)TimeSpan.FromSeconds(check.Timeout).TotalMilliseconds;
+                if (stopwatch.ElapsedMilliseconds > timeout) {
+                    logger.LogWarning($"Check of {Name} took {stopwatch.ElapsedMilliseconds}ms which is greater than configured Timeout of {timeout}ms");
+                }
+
                 availability.UpdateStatistics(serviceStatusModel.Healthy, stopwatch.ElapsedMilliseconds);
                 serviceStatusModel.Availability = availability;
                 recorder.RecordAvailability(Name, stopwatch.Elapsed, serviceStatusModel.Healthy, JsonConvert.SerializeObject(serviceStatusModel));

@@ -22,6 +22,7 @@ namespace Cortside.Health.Checks {
                 StatusDetail = statusDetail,
                 Timestamp = DateTime.UtcNow
             };
+            logger.LogError(statusDetail);
             return await Task.FromResult<ServiceStatusModel>(model);
         }
     }

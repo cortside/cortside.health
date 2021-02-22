@@ -40,8 +40,10 @@ namespace Cortside.Health.Checks {
                 response.Status = ServiceStatus.Degraded;
             }
 
-            if (response.Status != ServiceStatus.Ok) {
-                logger.LogError($"Health check response for {Name} is unhealthy: {JsonConvert.SerializeObject(response)}");
+            if (response.Status == ServiceStatus.Failure) {
+                logger.LogError($"Health check response for {Name} is failure: {JsonConvert.SerializeObject(response)}");
+            } else if (response.Status == ServiceStatus.Degraded) {
+                logger.LogWarning($"Health check response for {Name} is degraded: {JsonConvert.SerializeObject(response)}");
             }
 
             return response;
