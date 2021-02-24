@@ -35,13 +35,12 @@ namespace Cortside.Health {
         }
 
         protected override async Task ExecuteIntervalAsync() {
-            var batchSize = 5;
-            int batches = (int)Math.Ceiling((double)checks.Count / batchSize);
+            int batches = (int)Math.Ceiling((double)checks.Count / config.BatchSize);
             var stopwatch = new Stopwatch();
 
             stopwatch.Start();
             for (int i = 0; i < batches; i++) {
-                var tasks = checks.Skip(i * batchSize).Take(batchSize).Select(t => t.InternalExecuteAsync());
+                var tasks = checks.Skip(i * config.BatchSize).Take(config.BatchSize).Select(t => t.InternalExecuteAsync());
                 await Task.WhenAll(tasks).ConfigureAwait(false);
             }
             stopwatch.Stop();

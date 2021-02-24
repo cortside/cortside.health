@@ -11,6 +11,7 @@ namespace Cortside.Health {
         public bool Enabled { get; set; }
         public int Interval { get; set; }
         public int CacheDuration { get; set; }
+        public int BatchSize { get; set; } = 5;
         public List<CheckConfiguration> Checks { get; set; }
     }
 
@@ -22,6 +23,6 @@ namespace Cortside.Health {
         public bool Required { get; set; }
         public int CacheDuration { get; set; }
         public int Timeout { get; set; }
-        public int Interval { get; internal set; }
+        public int Interval { get; set; }
     }
 }
