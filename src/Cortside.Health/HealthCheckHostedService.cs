@@ -27,7 +27,7 @@ namespace Cortside.Health {
                 checks.Add(factory.Create(check));
             }
 
-            var healthCheck = new HealthCheck(checks, build, cache, factory.Logger, factory.Recorder);
+            var healthCheck = new HealthCheck(config, checks, build, cache, factory.Logger, factory.Recorder);
             healthCheck.Initialize(new CheckConfiguration() { Name = config.Name, Interval = config.Interval, CacheDuration = config.CacheDuration, Timeout = config.Interval });
             checks.Add(healthCheck);
 
