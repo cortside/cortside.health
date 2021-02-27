@@ -22,8 +22,8 @@ namespace Cortside.Health.Checks {
             this.recorder = recorder;
         }
 
-        public void Initialize(CheckConfiguration check) {
-            this.check = check;
+        public void Initialize(CheckConfiguration cc) {
+            this.check = cc;
 
             // fix up and make sure that interval and cache duration are set
             if (check.Interval == 0 && check.CacheDuration == 0) {
@@ -35,8 +35,11 @@ namespace Cortside.Health.Checks {
             if (check.CacheDuration < check.Interval) {
                 check.CacheDuration = check.Interval * 2;
             }
+            if (check.Timeout == 0) {
+                check.Timeout = check.Interval;
+            }
 
-            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval} and cache duration of {check.CacheDuration}");
+            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval}s, timeout of {check.Timeout}s and cache duration of {check.CacheDuration}s");
         }
 
         public string Name => check.Name;
@@ -58,11 +61,11 @@ namespace Cortside.Health.Checks {
         }
 
         public async Task InternalExecuteAsync() {
-            logger.LogInformation($"Checking status of {Name}");
-
             var item = cache.Get<ServiceStatusModel>(Name);
             var age = item != null ? (DateTime.UtcNow - item.Timestamp).TotalSeconds : int.MaxValue;
             if (age >= check.Interval) {
+                logger.LogInformation($"Checking status of {Name}");
+
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
@@ -80,6 +83,16 @@ namespace Cortside.Health.Checks {
                 }
 
                 stopwatch.Stop();
+
+                if (!serviceStatusModel.Healthy) {
+                    logger.LogError($"Check response for {Name} is failure with ServiceStatus of {serviceStatusModel.StatusDetail}: {JsonConvert.SerializeObject(serviceStatusModel)}");
+                }
+
+                var timeout = (int)TimeSpan.FromSeconds(check.Timeout).TotalMilliseconds;
+                if (stopwatch.ElapsedMilliseconds > timeout) {
+                    logger.LogWarning($"Check of {Name} took {stopwatch.ElapsedMilliseconds}ms which is greater than configured Timeout of {timeout}ms");
+                }
+
                 availability.UpdateStatistics(serviceStatusModel.Healthy, stopwatch.ElapsedMilliseconds);
                 serviceStatusModel.Availability = availability;
                 recorder.RecordAvailability(Name, stopwatch.Elapsed, serviceStatusModel.Healthy, JsonConvert.SerializeObject(serviceStatusModel));

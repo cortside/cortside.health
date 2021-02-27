@@ -13,10 +13,12 @@ namespace Cortside.Health.Checks {
     public class HealthCheck : Check {
         private readonly BuildModel build;
         private readonly List<Check> checks;
+        private readonly HealthCheckServiceConfiguration config;
 
-        public HealthCheck(List<Check> checks, BuildModel build, IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder) : base(cache, logger, recorder) {
+        public HealthCheck(HealthCheckServiceConfiguration config, List<Check> checks, BuildModel build, IMemoryCache cache, ILogger<Check> logger, IAvailabilityRecorder recorder) : base(cache, logger, recorder) {
             this.build = build;
             this.checks = checks;
+            this.config = config;
         }
 
         public override async Task<ServiceStatusModel> ExecuteAsync() {
@@ -40,8 +42,12 @@ namespace Cortside.Health.Checks {
                 response.Status = ServiceStatus.Degraded;
             }
 
-            if (response.Status != ServiceStatus.Ok) {
-                logger.LogError($"Health check response for {Name} is unhealthy: {JsonConvert.SerializeObject(response)}");
+            if (response.Uptime.TotalSeconds > config.CacheDuration) {
+                if (response.Status == ServiceStatus.Failure) {
+                    logger.LogError($"Health check response for {Name} is failure: {JsonConvert.SerializeObject(response.Checks.Where(c => !c.Value.Healthy).ToDictionary(c => c.Key, c => c.Value))}");
+                } else if (response.Status == ServiceStatus.Degraded) {
+                    logger.LogWarning($"Health check response for {Name} is degraded: {JsonConvert.SerializeObject(response.Checks.Where(c => !c.Value.Healthy).ToDictionary(c => c.Key, c => c.Value))}");
+                }
             }
 
             return response;

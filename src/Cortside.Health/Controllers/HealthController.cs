@@ -39,7 +39,7 @@ namespace Cortside.Health.Controllers {
         public IActionResult Get() {
             HealthModel result = cache.Get(config.Name) as HealthModel;
             if (result == null) {
-                logger.LogError("Unable to find valid healhcheck in cache", "HealthController");
+                logger.LogError("Unable to find valid healthcheck in cache", "HealthController");
                 result = new HealthModel {
                     Healthy = false,
                     Timestamp = DateTime.UtcNow,
