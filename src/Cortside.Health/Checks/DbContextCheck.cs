@@ -29,7 +29,7 @@ namespace Cortside.Health.Checks {
                     // only do actual test to conext if the db is not the in memory provider
                     if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory") {
                         context.Database.SetCommandTimeout(check.Timeout);
-                        await context.Database.ExecuteSqlCommandAsync("select @@VERSION");
+                        await context.Database.ExecuteSqlRawAsync("select @@VERSION").ConfigureAwait(false);
                     }
 
                     serviceStatusModel.Healthy = true;
