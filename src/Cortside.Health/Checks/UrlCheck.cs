@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Cortside.Health.Enums;
@@ -19,20 +20,30 @@ namespace Cortside.Health.Checks {
                 Required = check.Required
             };
 
-            var httpClient = new HttpClient {
+            using (var httpClient = new HttpClient {
                 Timeout = TimeSpan.FromSeconds(check.Timeout)
-            };
+            }) {
+                try {
+                    var response = await httpClient.GetAsync(check.Value, HttpCompletionOption.ResponseHeadersRead);
+                    if (response.IsSuccessStatusCode) {
+                        status.Healthy = true;
+                        status.Status = ServiceStatus.Ok;
+                        status.StatusDetail = "Successful";
+                    } else {
+                        status.StatusDetail = await response.Content.ReadAsStringAsync();
+                    }
 
-            using (var response = await httpClient.GetAsync(check.Value, HttpCompletionOption.ResponseHeadersRead)) {
-                if (response.IsSuccessStatusCode) {
-                    status.Healthy = true;
-                    status.Status = ServiceStatus.Ok;
-                    status.StatusDetail = "Successful";
-                } else {
-                    status.StatusDetail = await response.Content.ReadAsStringAsync();
+                } catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException) {
+                    // Handle timeout -- .net 5+
+                    status.StatusDetail = "The operation timed out";
+                } catch (TaskCanceledException ex) when (ex.InnerException is IOException) {
+                    // Handle timeout -- < .net 5
+                    status.StatusDetail = "The operation timed out";
+                } catch (TaskCanceledException ex) {
+                    // Handle cancellation.
+                    status.StatusDetail = ex.Message;
                 }
             }
-
             return status;
         }
     }
