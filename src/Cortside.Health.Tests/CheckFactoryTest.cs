@@ -1,5 +1,4 @@
 using Cortside.Health.Checks;
-using Cortside.Health.Models;
 using FluentAssertions;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
@@ -33,6 +32,25 @@ namespace Cortside.Health.Tests {
 
             // assert
             check.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void ShouldResolveUnresolvedCheckForNullTypeName() {
+            // assert
+            var cache = new Mock<IMemoryCache>();
+            var logger = new Mock<ILogger<Check>>();
+            var recorder = new Mock<IAvailabilityRecorder>();
+            var configuration = new Mock<IConfiguration>();
+            var sp = serviceCollection.BuildServiceProvider();
+            var factory = new CheckFactory(cache.Object, logger.Object, recorder.Object, sp, configuration.Object);
+
+            // act
+            var config = new CheckConfiguration() { Name = "foo", Type = null };
+            var check = factory.Create(config);
+
+            // assert
+            check.Should().NotBeNull();
+            check.Should().BeOfType(typeof(UnresolvedCheck));
         }
 
         [Fact]
