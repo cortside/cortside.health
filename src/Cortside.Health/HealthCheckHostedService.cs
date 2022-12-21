@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using Cortside.Common.Hosting;
 using Cortside.Health.Checks;
@@ -32,6 +33,11 @@ namespace Cortside.Health {
             checks.Add(healthCheck);
 
             this.config = config;
+        }
+
+        public override Task StartAsync(CancellationToken cancellationToken) {
+            logger.LogInformation("HealthCheckHostedService StartAsync() entered.");
+            return base.StartAsync(cancellationToken);
         }
 
         protected override async Task ExecuteIntervalAsync() {
