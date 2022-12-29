@@ -25,9 +25,12 @@ namespace Cortside.Health {
         public Dictionary<string, Type> CustomChecks { get; set; }
 
         public void UseConfiguration(IConfiguration configuration) {
-            TelemetryConfiguration = new TelemetryConfiguration() {
-                ConnectionString = configuration["ApplicationInsights:ConnectionString"]
-            };
+            var connectionString = configuration["ApplicationInsights:ConnectionString"];
+            if (!string.IsNullOrWhiteSpace(connectionString)) {
+                TelemetryConfiguration = new TelemetryConfiguration() {
+                    ConnectionString = configuration["ApplicationInsights:ConnectionString"]
+                };
+            }
             ServiceConfiguration = configuration.GetSection("HealthCheckHostedService").Get<HealthCheckServiceConfiguration>();
             BuildModel = configuration.GetSection("Build").Get<BuildModel>();
         }

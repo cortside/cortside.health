@@ -9,6 +9,7 @@
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
     <PackageReference Include="Cortside.Common.Hosting" Version="1.0.195" />
+    <PackageReference Include="Cortside.Common.Validation" Version="1.1.296" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.19.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />

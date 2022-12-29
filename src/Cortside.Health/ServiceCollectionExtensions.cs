@@ -1,4 +1,5 @@
 ﻿using System;
+using Cortside.Common.Validation;
 using Cortside.Health.Checks;
 using Cortside.Health.Recorders;
 using Microsoft.ApplicationInsights;
@@ -17,7 +18,11 @@ namespace Cortside.Health {
         }
 
         public static IServiceCollection AddHealth(this IServiceCollection services, HealthOptions configuration) {
-            if (!string.IsNullOrEmpty(configuration.TelemetryConfiguration?.ConnectionString)) {
+            Guard.From.Null(configuration, nameof(configuration));
+            Guard.From.Null(configuration.ServiceConfiguration, nameof(configuration.ServiceConfiguration));
+            Guard.From.Null(configuration.BuildModel, nameof(configuration.BuildModel));
+
+            if (!string.IsNullOrWhiteSpace(configuration.TelemetryConfiguration?.ConnectionString)) {
                 TelemetryClient telemetryClient = new TelemetryClient(configuration.TelemetryConfiguration);
                 services.AddSingleton(telemetryClient);
                 services.AddTransient<IAvailabilityRecorder, ApplicationInsightsRecorder>();
