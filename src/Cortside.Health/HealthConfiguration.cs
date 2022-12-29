@@ -23,5 +23,9 @@ namespace Cortside.Health {
         public HealthCheckServiceConfiguration ServiceConfiguration { get; set; }
         public BuildModel BuildModel { get; set; }
         public Dictionary<string, Type> CustomChecks { get; set; }
+
+        public void AddCustomCheck(string key, Type value) {
+            CustomChecks.Add(key, value);
+        }
     }
 }
