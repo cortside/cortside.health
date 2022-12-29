@@ -1,4 +1,5 @@
-﻿using Cortside.Health.Checks;
+﻿using System;
+using Cortside.Health.Checks;
 using Cortside.Health.Recorders;
 using Microsoft.ApplicationInsights;
 using Microsoft.Extensions.Caching.Memory;
@@ -8,7 +9,14 @@ using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health {
     public static class ServiceCollectionExtensions {
-        public static IServiceCollection AddHealth(this IServiceCollection services, HealthConfiguration configuration) {
+        public static IServiceCollection AddBootStrapper<T>(this IServiceCollection services, Action<HealthOptions> options) {
+            var o = new HealthOptions();
+            options?.Invoke(o);
+
+            return services.AddHealth(o);
+        }
+
+        public static IServiceCollection AddHealth(this IServiceCollection services, HealthOptions configuration) {
             if (!string.IsNullOrEmpty(configuration.TelemetryConfiguration?.ConnectionString)) {
                 TelemetryClient telemetryClient = new TelemetryClient(configuration.TelemetryConfiguration);
                 services.AddSingleton(telemetryClient);

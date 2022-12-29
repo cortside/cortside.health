@@ -5,12 +5,12 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.Extensions.Configuration;
 
 namespace Cortside.Health {
-    public class HealthConfiguration {
-        public HealthConfiguration() {
+    public class HealthOptions {
+        public HealthOptions() {
             CustomChecks = new Dictionary<string, Type>();
         }
 
-        public HealthConfiguration(IConfiguration configuration) {
+        public HealthOptions(IConfiguration configuration) {
             TelemetryConfiguration = new TelemetryConfiguration() {
                 ConnectionString = configuration["ApplicationInsights:ConnectionString"]
             };
@@ -23,6 +23,14 @@ namespace Cortside.Health {
         public HealthCheckServiceConfiguration ServiceConfiguration { get; set; }
         public BuildModel BuildModel { get; set; }
         public Dictionary<string, Type> CustomChecks { get; set; }
+
+        public void UseConfiguration(IConfiguration configuration) {
+            TelemetryConfiguration = new TelemetryConfiguration() {
+                ConnectionString = configuration["ApplicationInsights:ConnectionString"]
+            };
+            ServiceConfiguration = configuration.GetSection("HealthCheckHostedService").Get<HealthCheckServiceConfiguration>();
+            BuildModel = configuration.GetSection("Build").Get<BuildModel>();
+        }
 
         public void AddCustomCheck(string key, Type value) {
             CustomChecks.Add(key, value);
