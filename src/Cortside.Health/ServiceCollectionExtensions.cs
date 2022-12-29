@@ -9,7 +9,7 @@ using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health {
     public static class ServiceCollectionExtensions {
-        public static IServiceCollection AddBootStrapper<T>(this IServiceCollection services, Action<HealthOptions> options) {
+        public static IServiceCollection AddHealth(this IServiceCollection services, Action<HealthOptions> options) {
             var o = new HealthOptions();
             options?.Invoke(o);
 
