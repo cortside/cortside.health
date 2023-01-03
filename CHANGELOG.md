@@ -13,7 +13,10 @@
 | 4d89e1f | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
 | a0986ad | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update helper scripts; update nuget packages
 | 015ea8b | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  initial changelog
-| e0554ef | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/1.1, origin/develop, develop) update version in prep for next release
+| e0554ef | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version in prep for next release
+| 2c28cf2 | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  generate changelog
+| cc841cc | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  fix encoding
+| a600a57 | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/1.1, origin/release/1.1) fix project name
 ****
 
 # Release 1.0
@@ -58,14 +61,4 @@
 | 2058bed | <span style="white-space:nowrap;">2022-01-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  switch restsharp for httpclient because of restsharp versioning concerns
 | d70aa64 | <span style="white-space:nowrap;">2022-01-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add test for handling timeout
 | edc971a | <span style="white-space:nowrap;">2022-03-12</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (origin/master, master) Merge pull request #7 from cortside/develop
-| 8c52893 | <span style="white-space:nowrap;">2022-08-31</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  handle null check type as unresolved
-| 6162ae5 | <span style="white-space:nowrap;">2022-12-20</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  log startup of hosted service
-| e37dd0d | <span style="white-space:nowrap;">2022-12-20</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update nuget key
-| bb1ebd5 | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| d816a94 | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| 401210d | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| 08a280d | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| 92d1425 | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| 4d89e1f | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
-| a0986ad | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> develop, origin/develop) update helper scripts; update nuget packages
 ****
