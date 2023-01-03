@@ -1,5 +1,22 @@
-# Release 1.0
+# Release 1.1
 
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| 8c52893 | <span style="white-space:nowrap;">2022-08-31</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  handle null check type as unresolved
+| 6162ae5 | <span style="white-space:nowrap;">2022-12-20</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  log startup of hosted service
+| e37dd0d | <span style="white-space:nowrap;">2022-12-20</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update nuget key
+| bb1ebd5 | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| d816a94 | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| 401210d | <span style="white-space:nowrap;">2022-12-28</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| 08a280d | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| 92d1425 | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| 4d89e1f | <span style="white-space:nowrap;">2022-12-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add servicecollection extension method to register health services
+| a0986ad | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update helper scripts; update nuget packages
+| 015ea8b | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  initial changelog
+| e0554ef | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/1.1, origin/develop, develop) update version in prep for next release
+****
+
+# Release 1.0
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | ef5b1cd | <span style="white-space:nowrap;">2020-11-22</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  initial version
