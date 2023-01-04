@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cortside.Health.Checks;
-using Cortside.Health.Models;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health {
     public class CheckFactory : ICheckFactory {
-
         private readonly IMemoryCache cache;
         private readonly ILogger<Check> logger;
         private readonly IServiceProvider serviceProvider;
@@ -35,23 +33,21 @@ namespace Cortside.Health {
         public Check Create(CheckConfiguration check) {
             check.Value = ExpandTemplate(check.Value);
 
-            if (checks.ContainsKey(check.Type)) {
+            if (check?.Type != null && checks.ContainsKey(check.Type)) {
                 var type = checks[check.Type];
-                Check instance = null;
+                Check instance;
                 try {
                     instance = serviceProvider.GetService(type) as Check;
                 } catch (Exception ex) {
                     instance = new UnresolvedCheck(cache, logger, recorder, $"Could not resolve type {type.Name} with message: {ex.Message}");
                 }
 
-                if (instance == null) {
-                    instance = new UnresolvedCheck(cache, logger, recorder, $"Could not resolve type {type.Name}");
-                }
+                instance ??= new UnresolvedCheck(cache, logger, recorder, $"Could not resolve type {type.Name}");
 
                 instance.Initialize(check);
                 return instance;
             } else {
-                var instance = new UnresolvedCheck(cache, logger, recorder, $"Could not find check in registered checks for type {check.Type}");
+                var instance = new UnresolvedCheck(cache, logger, recorder, $"Could not find check in registered checks for type {check.Type ?? "NULL"}");
                 instance.Initialize(check);
                 return instance;
             }

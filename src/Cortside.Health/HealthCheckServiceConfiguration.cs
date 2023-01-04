@@ -2,7 +2,6 @@
 using System.Dynamic;
 
 namespace Cortside.Health {
-
     /// <summary>
     /// config
     /// </summary>
@@ -14,7 +13,6 @@ namespace Cortside.Health {
         public int BatchSize { get; set; } = 5;
         public List<CheckConfiguration> Checks { get; set; }
     }
-
 
     public class CheckConfiguration : DynamicObject {
         public string Name { get; set; }
