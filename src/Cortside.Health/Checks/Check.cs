@@ -9,7 +9,6 @@ using Newtonsoft.Json;
 
 namespace Cortside.Health.Checks {
     public abstract class Check {
-
         protected CheckConfiguration check;
         protected readonly IMemoryCache cache;
         protected readonly ILogger<Check> logger;
@@ -23,7 +22,7 @@ namespace Cortside.Health.Checks {
         }
 
         public void Initialize(CheckConfiguration cc) {
-            this.check = cc;
+            check = cc;
 
             // fix up and make sure that interval and cache duration are set
             if (check.Interval == 0 && check.CacheDuration == 0) {
@@ -39,22 +38,25 @@ namespace Cortside.Health.Checks {
                 check.Timeout = check.Interval;
             }
 
-            logger.LogInformation($"Initializing {check.Name} check of type {this.GetType().Name} with interval of {check.Interval}s, timeout of {check.Timeout}s and cache duration of {check.CacheDuration}s");
+            logger.LogInformation($"Initializing {check.Name} check of type {GetType().Name} with interval of {check.Interval}s, timeout of {check.Timeout}s and cache duration of {check.CacheDuration}s");
         }
 
         public string Name => check.Name;
+
+        protected ServiceStatusModel Failure(string statusDetail) {
+            return new ServiceStatusModel() {
+                Healthy = false,
+                Timestamp = DateTime.UtcNow,
+                Status = ServiceStatus.Failure,
+                StatusDetail = statusDetail,
+                Required = check.Required
+            };
+        }
+
         public ServiceStatusModel Status {
             get {
                 var status = cache.Get<ServiceStatusModel>(Name);
-                if (status == null) {
-                    return new ServiceStatusModel() {
-                        Healthy = false,
-                        Timestamp = DateTime.UtcNow,
-                        Status = ServiceStatus.Failure,
-                        StatusDetail = "status not cached",
-                        Required = check.Required
-                    };
-                }
+                status ??= Failure("status not cached");
 
                 return status;
             }
@@ -73,13 +75,7 @@ namespace Cortside.Health.Checks {
                 try {
                     serviceStatusModel = await ExecuteAsync();
                 } catch (Exception ex) {
-                    serviceStatusModel = new ServiceStatusModel() {
-                        Healthy = false,
-                        Timestamp = DateTime.UtcNow,
-                        Status = ServiceStatus.Failure,
-                        StatusDetail = ex.Message,
-                        Required = check.Required
-                    };
+                    serviceStatusModel = Failure(ex.Message);
                 }
 
                 stopwatch.Stop();
