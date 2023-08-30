@@ -1,19 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
-
   <ItemGroup>
-    <PackageReference Include="Cortside.Common.Correlation" Version="1.2.322">
+    <PackageReference Include="Cortside.Common.Correlation" Version="6.0.376">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Cortside.Common.Hosting" Version="1.2.322" />
-    <PackageReference Include="Cortside.Common.Validation" Version="1.2.322" />
+    <PackageReference Include="Cortside.Common.Hosting" Version="6.0.376" />
+    <PackageReference Include="Cortside.Common.Validation" Version="6.0.376" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.21.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="4.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.32" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="3.1.32" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.21" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.21" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="6.0.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
@@ -21,10 +19,10 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="6.0.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.4.27">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.7.30">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
-
 </Project>
