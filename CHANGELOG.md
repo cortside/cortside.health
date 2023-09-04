@@ -1,5 +1,9 @@
 # Release 6.0
 
+* Update version number to match framework version (6.x)
+* Update projects to be net6.0
+* Update nuget dependencies to latest stable versions
+
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | 888f59f | <span style="white-space:nowrap;">2023-01-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
