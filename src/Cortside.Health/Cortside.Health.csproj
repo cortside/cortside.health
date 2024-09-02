@@ -10,8 +10,8 @@
     <PackageReference Include="Cortside.Common.Validation" Version="6.3.444-release-6.3" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.22.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Versioning" Version="5.1.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.32" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.32" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.33" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.33" />
     <PackageReference Include="Microsoft.Extensions.Caching.Abstractions" Version="8.0.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.10.48">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.11.20">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>

@@ -6,7 +6,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health.Controllers {
-
     /// <summary>
     /// Health
     /// </summary>
