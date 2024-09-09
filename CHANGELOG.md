@@ -1,5 +1,8 @@
 # Release 6.1
 
+* Update nuget dependencies to latest stable versions
+* Update to use Asp.Versioning instead of Microsoft.AspNetCore.Mvc.Versioning
+
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | be64fc6 | <span style="white-space:nowrap;">2023-08-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
