@@ -1,6 +1,5 @@
 ﻿using System;
 using Cortside.Health.Checks;
-using Cortside.Health.Models;
 using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health {

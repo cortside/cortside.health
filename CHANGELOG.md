@@ -1,3 +1,18 @@
+# Release 6.1
+
+* Update nuget dependencies to latest stable versions
+* Update to use Asp.Versioning instead of Microsoft.AspNetCore.Mvc.Versioning
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| be64fc6 | <span style="white-space:nowrap;">2023-08-29</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| 487e227 | <span style="white-space:nowrap;">2023-09-04</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 74d2e59 | <span style="white-space:nowrap;">2024-08-05</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (release/6.0) update to latest nuget packages; update scripts
+| 9828b63 | <span style="white-space:nowrap;">2024-08-05</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'release/6.0' into develop
+| fef5eb3 | <span style="white-space:nowrap;">2024-08-05</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'develop' of github.com:cortside/cortside.health into develop
+| a1d3f44 | <span style="white-space:nowrap;">2024-09-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/6.1, origin/develop, develop) update scripts; update nuget packages
+****
+
 # Release 6.0
 
 * Update version number to match framework version (6.x)

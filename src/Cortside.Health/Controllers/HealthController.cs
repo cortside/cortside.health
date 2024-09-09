@@ -1,4 +1,5 @@
 using System;
+using Asp.Versioning;
 using Cortside.Health.Enums;
 using Cortside.Health.Models;
 using Microsoft.AspNetCore.Mvc;
@@ -6,7 +7,6 @@ using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Logging;
 
 namespace Cortside.Health.Controllers {
-
     /// <summary>
     /// Health
     /// </summary>
