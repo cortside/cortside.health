@@ -17,7 +17,7 @@ namespace Cortside.Health {
             return services.AddHealth(o);
         }
 
-        public static IServiceCollection AddHealth(this IServiceCollection services, HealthOptions configuration) {
+        public static IServiceCollection AddHealth(this IServiceCollection services, HealthOptions configuration, Action<CheckFactory> action = null) {
             Guard.From.Null(configuration, nameof(configuration));
             Guard.From.Null(configuration.ServiceConfiguration, nameof(configuration.ServiceConfiguration));
             Guard.From.Null(configuration.BuildModel, nameof(configuration.BuildModel));
@@ -52,6 +52,10 @@ namespace Cortside.Health {
                 foreach (var check in configuration.CustomChecks) {
                     factory.RegisterCheck(check.Key, check.Value);
                 }
+
+                // allow for additional checks to be registered
+                action?.Invoke(factory);
+
                 return factory as ICheckFactory;
             });
             services.AddHostedService<HealthCheckHostedService>();
