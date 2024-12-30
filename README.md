@@ -6,7 +6,8 @@
 
 Framework for exposing health check endpoint with configurable checks and ability to publish availablity via telemetry recorder.
 
-## Example appsettings.json configuration:
+## Example appsettings.json configuration
+
 ```json
 "HealthCheckHostedService": {
     "Name": "{{Service:Name}}",
@@ -45,7 +46,8 @@ Framework for exposing health check endpoint with configurable checks and abilit
 }
 ```
 
-## Example build.json (or at part of appsettings.json):
+## Example build.json (or at part of appsettings.json)
+
 ```json
 "Build": {
     "version": "1.0.0",
@@ -57,7 +59,8 @@ Framework for exposing health check endpoint with configurable checks and abilit
 
 Note: you can use the {{variable}} syntax in the name and value properties of the check to reference a configuration variable else where in configurations.  This way you are not duplicating values, example for services that have another section so that you don't have mismatch in check and running value.
 
-## Example Startup.cs configuration:
+## Example Startup.cs configuration
+
 ```csharp
 // use PartManager to register controller -- add to existing AddControllers call
 services.AddControllers()
@@ -107,4 +110,4 @@ services.AddHealth(o => {
 ```
 
 ## Running example
-See Coeus as a working example of full api service that make use of health checks at https://github.com/cortside/coeus.  A template api project is also available at https://github.com/cortside/cortside.templates.
+See Coeus as a working example of full api service that make use of health checks at https://github.com/cortside/coeus/shoppingcart-api.  A template api project is also available at https://github.com/cortside/cortside.templates.
