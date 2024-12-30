@@ -1,3 +1,7 @@
+[![Build status](https://ci.appveyor.com/api/projects/status/o74s8t2pkva1iliq?svg=true)](https://ci.appveyor.com/project/cortside/cortside-health)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=cortside_cortside.health&metric=alert_status)](https://sonarcloud.io/dashboard?id=cortside_cortside.health)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cortside_cortside.health&metric=coverage)](https://sonarcloud.io/dashboard?id=cortside_cortside.health)
+
 # Cortside.Health
 
 Framework for exposing health check endpoint with configurable checks and ability to publish availablity via telemetry recorder.
