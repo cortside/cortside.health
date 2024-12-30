@@ -57,7 +57,7 @@ Framework for exposing health check endpoint with configurable checks and abilit
 }
 ```
 
-Note: you can use the {{variable}} syntax in the name and value properties of the check to reference a configuration variable else where in configurations.  This way you are not duplicating values, example for services that have another section so that you don't have mismatch in check and running value.
+Note: you can use the `{{property}}` syntax in the name and value properties of the check to reference a configuration property elsewhere in configuration.  This way you are not duplicating values, example for services that have another section so that you don't have mismatch in check and running value.
 
 ## Example Startup.cs configuration
 
