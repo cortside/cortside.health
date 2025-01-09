@@ -2,11 +2,15 @@ using System;
 using System.Collections.Generic;
 
 namespace Cortside.Health.Models {
-
     /// <summary>
     /// Health
     /// </summary>
     public class HealthModel : ServiceStatusModel {
+        /// <summary>
+        /// The service identifier
+        /// </summary>
+        public string Host { get; set; } = System.Environment.MachineName;
+
         /// <summary>
         /// The service identifier
         /// </summary>
