@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Cortside.Health.Checks;
 using Microsoft.Extensions.Caching.Memory;

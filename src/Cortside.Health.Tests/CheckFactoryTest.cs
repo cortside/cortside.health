@@ -1,5 +1,5 @@
 using Cortside.Health.Checks;
-using FluentAssertions;
+using Shouldly;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,7 +31,7 @@ namespace Cortside.Health.Tests {
             var check = factory.Create(config);
 
             // assert
-            check.Should().NotBeNull();
+            check.ShouldNotBeNull();
         }
 
         [Fact]
@@ -49,8 +49,8 @@ namespace Cortside.Health.Tests {
             var check = factory.Create(config);
 
             // assert
-            check.Should().NotBeNull();
-            check.Should().BeOfType(typeof(UnresolvedCheck));
+            check.ShouldNotBeNull();
+            check.ShouldBeOfType(typeof(UnresolvedCheck));
         }
 
         [Fact]
@@ -68,8 +68,8 @@ namespace Cortside.Health.Tests {
             var check = factory.Create(config);
 
             // assert
-            check.Should().NotBeNull();
-            check.Should().BeOfType(typeof(UnresolvedCheck));
+            check.ShouldNotBeNull();
+            check.ShouldBeOfType(typeof(UnresolvedCheck));
         }
 
         [Fact]
@@ -88,8 +88,8 @@ namespace Cortside.Health.Tests {
             var check = factory.Create(config);
 
             // assert
-            check.Should().NotBeNull();
-            check.Should().BeOfType(typeof(UnresolvedCheck));
+            check.ShouldNotBeNull();
+            check.ShouldBeOfType(typeof(UnresolvedCheck));
         }
     }
 }

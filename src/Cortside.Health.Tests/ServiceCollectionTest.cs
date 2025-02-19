@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Cortside.Health.Checks;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

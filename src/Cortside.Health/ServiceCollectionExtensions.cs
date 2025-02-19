@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Cortside.Common.Validation;
 using Cortside.Health.Checks;
 using Cortside.Health.Recorders;

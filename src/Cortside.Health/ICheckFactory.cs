@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Cortside.Health.Checks;
 using Microsoft.Extensions.Logging;
 
