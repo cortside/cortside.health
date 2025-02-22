@@ -29,7 +29,11 @@ namespace Cortside.Health {
             }
 
             var healthCheck = new HealthCheck(config, checks, build, cache, factory.Logger, factory.Recorder);
-            healthCheck.Initialize(new CheckConfiguration() { Name = config.Name, Interval = config.Interval, CacheDuration = config.CacheDuration, Timeout = config.Interval });
+            healthCheck.Initialize(new CheckConfiguration() {
+                Name = config.Name,
+                Interval = config.Interval,
+                CacheDuration = config.CacheDuration, Timeout = config.Interval
+            });
             checks.Add(healthCheck);
 
             this.config = config;
