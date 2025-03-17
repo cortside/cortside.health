@@ -1,5 +1,15 @@
 # Release 8.0
 
+* Updated powershell scripts to latest versions from coeus/shoppingcart-api
+* Standardized library build files and resolved code coverage issues
+* Update target framework to net8.0
+* Update all dependency nuget packages
+* Add/Fix build badges
+* Transition to use Shouldly instead of FluentAssertions
+* Add Statistics property to ServiceStatusModel so that checks can add additional information to the health response
+* Add Host to HealthModel and default to MachineName
+* Add enforcement of timeout in Check so that a long running check can't cause the loop to take longer than the cache period causing cache eviction and then health failure
+
 |Commit|Date|Author|Message|
 |---|---|---|---|
 | 6cb78df | <span style="white-space:nowrap;">2024-09-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
