@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Cortside.Health.Recorders {
     public class NullRecorder : IAvailabilityRecorder {

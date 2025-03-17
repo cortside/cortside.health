@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using System.Diagnostics;
+using System.Threading;
 using System.Threading.Tasks;
 using Cortside.Health.Enums;
 using Cortside.Health.Models;
@@ -62,7 +63,7 @@ namespace Cortside.Health.Checks {
             }
         }
 
-        public async Task InternalExecuteAsync() {
+        public async Task<ServiceStatusModel> InternalExecuteAsync() {
             var item = cache.Get<ServiceStatusModel>(Name);
             var age = item != null ? (DateTime.UtcNow - item.Timestamp).TotalSeconds : int.MaxValue;
             if (age >= check.Interval) {
@@ -71,20 +72,27 @@ namespace Cortside.Health.Checks {
                 var stopwatch = new Stopwatch();
                 stopwatch.Start();
 
+                var timespan = TimeSpan.FromSeconds(check.Timeout);
                 ServiceStatusModel serviceStatusModel;
                 try {
-                    serviceStatusModel = await ExecuteAsync();
+                    var task = ExecuteAsync();
+                    using (var cts = new CancellationTokenSource(timespan)) {
+                        serviceStatusModel = await task.WaitAsync(cts.Token);
+                    }
+                } catch (TaskCanceledException ex) {
+                    serviceStatusModel = Failure("The operation timed out");
                 } catch (Exception ex) {
                     serviceStatusModel = Failure(ex.Message);
                 }
 
                 stopwatch.Stop();
 
+
                 if (!serviceStatusModel.Healthy) {
                     logger.LogError($"Check response for {Name} is failure with ServiceStatus of {serviceStatusModel.StatusDetail}: {JsonConvert.SerializeObject(serviceStatusModel)}");
                 }
 
-                var timeout = (int)TimeSpan.FromSeconds(check.Timeout).TotalMilliseconds;
+                var timeout = (int)timespan.TotalMilliseconds;
                 if (stopwatch.ElapsedMilliseconds > timeout) {
                     logger.LogWarning($"Check of {Name} took {stopwatch.ElapsedMilliseconds}ms which is greater than configured Timeout of {timeout}ms");
                 }
@@ -95,9 +103,14 @@ namespace Cortside.Health.Checks {
 
                 // Store it in cache
                 cache.Set(Name, serviceStatusModel, DateTimeOffset.Now.AddSeconds(check.CacheDuration));
+
+                return serviceStatusModel;
             }
+
+            return item;
         }
 
+        // TODO: consider using a cancellation token so that the task can be cancelled if it takes too long
         public abstract Task<ServiceStatusModel> ExecuteAsync();
     }
 }

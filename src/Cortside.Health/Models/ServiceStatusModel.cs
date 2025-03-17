@@ -1,5 +1,6 @@
-﻿using System;
+using System;
 using Cortside.Health.Enums;
+using Newtonsoft.Json;
 
 namespace Cortside.Health.Models {
     /// <summary>
@@ -20,5 +21,8 @@ namespace Cortside.Health.Models {
         public bool Required { get; set; }
 
         public Availability Availability { get; set; }
+
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public object Statistics { get; set; }
     }
 }

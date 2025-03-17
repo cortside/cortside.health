@@ -1,3 +1,31 @@
+# Release 8.0
+
+* Updated powershell scripts to latest versions from coeus/shoppingcart-api
+* Standardized library build files and resolved code coverage issues
+* Update target framework to net8.0
+* Update all dependency nuget packages
+* Add/Fix build badges
+* Transition to use Shouldly instead of FluentAssertions
+* Add Statistics property to ServiceStatusModel so that checks can add additional information to the health response
+* Add Host to HealthModel and default to MachineName
+* Add enforcement of timeout in Check so that a long running check can't cause the loop to take longer than the cache period causing cache eviction and then health failure
+
+|Commit|Date|Author|Message|
+|---|---|---|---|
+| 6cb78df | <span style="white-space:nowrap;">2024-09-02</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update version
+| c8ab132 | <span style="white-space:nowrap;">2024-09-09</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| e784e3f | <span style="white-space:nowrap;">2024-11-04</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add property for optional statistic information about health of a service
+| d958cd9 | <span style="white-space:nowrap;">2024-11-04</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add ability to register addition checks
+| 02bd2e1 | <span style="white-space:nowrap;">2024-12-30</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge branch 'master' into develop
+| 41c90b8 | <span style="white-space:nowrap;">2025-01-08</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  add host to health check, defaulting to current machine name
+| e5a87cb | <span style="white-space:nowrap;">2025-02-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  update to net8
+| fe05e7b | <span style="white-space:nowrap;">2025-02-19</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Use Shouldly instead of FluentAssertions because of new licensing
+| 6030c4f | <span style="white-space:nowrap;">2025-02-21</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Add logic to check to force timing out if call to ExecuteAsync takes too long
+| b8c07f5 | <span style="white-space:nowrap;">2025-02-21</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (origin/checktimeout, checktimeout) Use Shouldly instead of FluentAssertions because of new licensing
+| 8e897a2 | <span style="white-space:nowrap;">2025-02-24</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  Merge pull request #13 from cortside/checktimeout
+| b3b05fb | <span style="white-space:nowrap;">2025-03-13</span> | <span style="white-space:nowrap;">Cort Schaefer</span> |  (HEAD -> release/8.0, origin/develop, develop) update packages
+****
+
 # Release 6.1
 
 * Update nuget dependencies to latest stable versions
