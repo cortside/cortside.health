@@ -4,11 +4,11 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Asp.Versioning.Http" Version="8.1.0" />
-    <PackageReference Include="Cortside.Common.Correlation" Version="8.0.476-8.0">
+    <PackageReference Include="Cortside.Common.Correlation" Version="8.0.478">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Cortside.Common.Hosting" Version="8.0.476-8.0" />
-    <PackageReference Include="Cortside.Common.Validation" Version="8.0.476-8.0" />
+    <PackageReference Include="Cortside.Common.Hosting" Version="8.0.478" />
+    <PackageReference Include="Cortside.Common.Validation" Version="8.0.478" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="2.23.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.3" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="9.0.3" />
@@ -19,7 +19,7 @@
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="9.0.3">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.13.2">
+    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.13.61">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
