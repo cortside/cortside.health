@@ -32,9 +32,17 @@ namespace Cortside.Health.Checks {
                         ).Select(x => x as IMonitoredHostedService)
                         .ToList();
 
-                    // TODO: -5 should be configurable
-                    var unhealthy = monitoredServices.Any(x => x.LastActivity < DateTime.UtcNow.AddSeconds(-5 * x.Interval.TotalSeconds));
-                    if (!unhealthy) {
+
+                    if (!int.TryParse(check.Value ?? "", out int age)) {
+                        age = 120;
+                    }
+                    var services = monitoredServices.Where(x => x.LastActivity < DateTime.UtcNow.AddSeconds(-1 * age)).ToList();
+                    if (services.Count > 0) {
+                        serviceStatusModel.Healthy = false;
+                        serviceStatusModel.Status = ServiceStatus.Failure;
+                        var types = string.Join(',', services.Select(x => x.GetType().ToString()).ToArray());
+                        serviceStatusModel.StatusDetail = $"Unhealthy services: {types}";
+                    } else {
                         serviceStatusModel.Healthy = true;
                         serviceStatusModel.Status = ServiceStatus.Ok;
                         serviceStatusModel.StatusDetail = "Successful";

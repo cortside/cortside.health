@@ -42,7 +42,8 @@ namespace Cortside.Health.Tests {
                 Type = "monitoredhostedservice",
                 Required = true,
                 Interval = 30,
-                Timeout = 5
+                Timeout = 5,
+                Value = waitDelay.ToString()
             };
             check.Initialize(cc);
             var status = await check.ExecuteAsync();
