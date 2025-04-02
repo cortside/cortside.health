@@ -37,6 +37,7 @@ namespace Cortside.Health {
             // checks
             services.AddTransient<UrlCheck>();
             services.AddTransient<DbContextCheck>();
+            services.AddTransient<MonitoredHostedServiceCheck>();
             foreach (var check in configuration.CustomChecks) {
                 services.AddTransient(check.Value);
             }
