@@ -1,10 +1,10 @@
 using Cortside.Health.Checks;
-using Shouldly;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Moq;
+using Shouldly;
 using Xunit;
 
 namespace Cortside.Health.Tests {
@@ -33,6 +33,25 @@ namespace Cortside.Health.Tests {
             // assert
             check.ShouldNotBeNull();
         }
+
+        [Fact]
+        public void ShouldResolveMonitoredHostedServiceCheck() {
+            // assert
+            var cache = new Mock<IMemoryCache>();
+            var logger = new Mock<ILogger<Check>>();
+            var recorder = new Mock<IAvailabilityRecorder>();
+            var configuration = new Mock<IConfiguration>();
+            var sp = serviceCollection.BuildServiceProvider();
+            var factory = new CheckFactory(cache.Object, logger.Object, recorder.Object, sp, configuration.Object);
+
+            // act
+            var config = new CheckConfiguration() { Name = "foo", Type = "monitoredhostedservice" };
+            var check = factory.Create(config);
+
+            // assert
+            check.ShouldNotBeNull();
+        }
+
 
         [Fact]
         public void ShouldResolveUnresolvedCheckForNullTypeName() {
