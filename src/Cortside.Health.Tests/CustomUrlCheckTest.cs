@@ -19,7 +19,7 @@ namespace Cortside.Health.Tests {
                 Name = "foo",
                 Type = "url",
                 Required = false,
-                Value = "https://httpstat.us/200?sleep=10000",
+                Value = "https://httpbin.org/delay/10",
                 Interval = 30,
                 Timeout = 5
             };

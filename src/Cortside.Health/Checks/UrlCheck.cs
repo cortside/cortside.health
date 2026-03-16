@@ -31,6 +31,9 @@ namespace Cortside.Health.Checks {
                         status.StatusDetail = "Successful";
                     } else {
                         status.StatusDetail = await response.Content.ReadAsStringAsync();
+                        if (status.StatusDetail.Length == 0) {
+                            status.StatusDetail = $"{(int)response.StatusCode} {response.ReasonPhrase}";
+                        }
                     }
 
                 } catch (TaskCanceledException ex) when (ex.InnerException is TimeoutException) {

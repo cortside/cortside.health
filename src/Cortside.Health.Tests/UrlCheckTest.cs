@@ -16,7 +16,7 @@ namespace Cortside.Health.Tests {
                 Name = "foo",
                 Type = "url",
                 Required = false,
-                Value = "https://httpstat.us/200",
+                Value = "https://httpbin.org/status/200",
                 Interval = 30,
                 Timeout = 5
             };
@@ -38,7 +38,7 @@ namespace Cortside.Health.Tests {
                 Name = "foo",
                 Type = "url",
                 Required = false,
-                Value = "https://httpstat.us/503",
+                Value = "https://httpbin.org/status/503",
                 Interval = 30,
                 Timeout = 5
             };
@@ -49,7 +49,7 @@ namespace Cortside.Health.Tests {
 
             // assert
             Assert.False(status.Healthy);
-            Assert.Equal("503 Service Unavailable", status.StatusDetail);
+            Assert.Equal("503 SERVICE UNAVAILABLE", status.StatusDetail);
         }
 
         [Fact]
@@ -61,7 +61,7 @@ namespace Cortside.Health.Tests {
                 Name = "foo",
                 Type = "url",
                 Required = false,
-                Value = "https://httpstat.us/200?sleep=15000",
+                Value = "https://httpbin.org/delay/15",
                 Interval = 30,
                 Timeout = 5
             };
