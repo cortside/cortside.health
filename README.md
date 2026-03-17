@@ -5,6 +5,7 @@
 # Cortside.Health
 
 Framework for exposing health check endpoint with configurable checks and ability to publish availablity via telemetry recorder.
+NOTE: telemetry id now shows as activityId
 
 ## Example appsettings.json configuration
 
