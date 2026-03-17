@@ -30,9 +30,9 @@ namespace Cortside.Health.Recorders {
                 telemetry.Message = message;
 
                 var exceptionTelemetry = new ExceptionTelemetry();
-                exceptionTelemetry.Context.Operation.Id = telemetry.Id;
-                exceptionTelemetry.Properties.Add("TestName", telemetry.Name);
-                exceptionTelemetry.Properties.Add("TestLocation", telemetry.RunLocation);
+                exceptionTelemetry.Properties.Add("AvailabilityId", telemetry.Id);
+                exceptionTelemetry.Properties.Add("Name", telemetry.Name);
+                exceptionTelemetry.Properties.Add("Location", telemetry.RunLocation);
                 telemetryClient.TrackException(exceptionTelemetry);
             }
 
