@@ -3,12 +3,12 @@
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Asp.Versioning.Http" Version="10.0.0" />
-    <PackageReference Include="Cortside.Common.Correlation" Version="8.1.506">
+    <PackageReference Include="Asp.Versioning.Http" Version="8.1.1" />
+    <PackageReference Include="Cortside.Common.Correlation" Version="10.0.507-develop">
       <TreatAsUsed>true</TreatAsUsed>
     </PackageReference>
-    <PackageReference Include="Cortside.Common.Hosting" Version="8.1.506" />
-    <PackageReference Include="Cortside.Common.Validation" Version="8.1.506" />
+    <PackageReference Include="Cortside.Common.Hosting" Version="10.0.507-develop" />
+    <PackageReference Include="Cortside.Common.Validation" Version="10.0.507-develop" />
     <PackageReference Include="Microsoft.ApplicationInsights" Version="3.1.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="10.0.10" />
